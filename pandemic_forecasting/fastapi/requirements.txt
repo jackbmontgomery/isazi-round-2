@@ -1,0 +1,5 @@
+uvicorn[standard]==0.20.0
+fastapi[all]==0.88.0
+bs4
+requests
+pandas

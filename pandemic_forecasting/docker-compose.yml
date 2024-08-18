@@ -1,0 +1,24 @@
+services:
+  fastapi:
+    build: ./fastapi
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fastapi/app:/app
+
+  nuxt:
+    build: ./nuxt/
+    restart: always
+    ports:
+      - "3000:3000"
+    command: "npm run start"
+
+  nginx:
+    image: nginx:1.19
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - nuxt
