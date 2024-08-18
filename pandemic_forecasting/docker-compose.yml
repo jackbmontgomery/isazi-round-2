@@ -1,7 +1,7 @@
 services:
   fastapi:
-    build: ./fastapi/
-    restart: always
+    build: ./fastapi
+    container_name: fastapi
     ports:
       - "8000:8000"
     volumes:
@@ -9,6 +9,7 @@ services:
 
   nuxt:
     build: ./nuxt/
+    container_name: nuxt
     restart: always
     ports:
       - "3000:3000"
