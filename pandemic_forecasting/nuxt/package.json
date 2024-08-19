@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@canvasjs/vue-charts": "^1.0.4",
+    "chart.js": "^4.4.3",
     "nuxt": "^3.12.4",
-    "vue": "latest"
+    "vue": "latest",
+    "vue-chartjs": "^5.3.1"
   }
 }
