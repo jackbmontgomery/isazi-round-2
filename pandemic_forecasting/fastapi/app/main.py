@@ -8,10 +8,9 @@ import json
 import pandas as pd
 
 app = FastAPI()
-
 origins = [
-    "http://nuxt",
-    "http:/nuxt:3000",
+    "http://nuxt:3000",
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -58,4 +57,9 @@ async def startup_event():
 @app.get("/")
 def read_root():
     global data
-    return data.to_json(orient="index")
+    # Convert the date index to a more human-readable string format (e.g., 'YYYY-MM-DD')
+    data_copy = data.copy()
+    data_copy.index = data_copy.index.strftime('%Y-%m-%d')
+    
+    # Return the JSON response
+    return json.loads(data_copy.to_json(orient="index"))
