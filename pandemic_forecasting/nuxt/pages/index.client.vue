@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <CanvasJSChart :options="options" :style="styleOptions" class="chart" />
+        <UTable :columns="columns" :rows="tableData" class="table" style="color: black;" />
         <div class="button-container">
             <button @click="downloadCsv" class="download-button">Download Projection CSV</button>
         </div>
-        <UTable :columns="columns" :rows="tableData" class="table" style="color: black;" />
     </div>
 </template>
 
@@ -99,6 +99,7 @@ const options = ref({
     title: {
         text: `South Africa COVID-19 Daily Cases - ${apiCallDate.value}`
     },
+    exportEnabled: true,
     axisX: {
         valueFormatString: "MMM YY",
         interval: 1,
