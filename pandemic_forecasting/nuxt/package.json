@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@canvasjs/vue-charts": "^1.0.4",
+    "@nuxt/ui": "^2.18.4",
     "chart.js": "^4.4.3",
     "nuxt": "^3.12.4",
     "vue": "latest",

@@ -7,6 +7,8 @@ import re
 import json
 import pandas as pd
 
+from statsmodels.tsa.arima.model import ARIMA
+
 app = FastAPI()
 origins = [
     "http://nuxt:3000",
@@ -55,11 +57,31 @@ async def startup_event():
     data = data.asfreq('D')
 
 @app.get("/")
-def read_root():
+def read_root(runDate: str = '2023-01-01'):
     global data
-    # Convert the date index to a more human-readable string format (e.g., 'YYYY-MM-DD')
-    data_copy = data.copy()
-    data_copy.index = data_copy.index.strftime('%Y-%m-%d')
-    
-    # Return the JSON response
-    return json.loads(data_copy.to_json(orient="index"))
+    run_location = data.index.get_loc(runDate)
+
+    training_data = data[0:run_location]
+
+    model = ARIMA(training_data['cases'], order=(1, 0, 7))
+    model_fit = model.fit()
+
+    forecast = model_fit.get_forecast(steps=7)
+    predicted_mean = forecast.predicted_mean
+
+    forecast_list = {}
+
+    for date, mean in zip(predicted_mean.index, predicted_mean):
+        forecast_list[date.strftime('%Y-%m-%d')] = {
+                'predicted_mean': mean
+        }
+
+    train_copy = training_data.copy()
+    train_copy.index = training_data.index.strftime('%Y-%m-%d')
+
+    return_body = {
+        'forecast': forecast_list,
+        'data': json.loads(train_copy.to_json(orient="index"))
+    }
+
+    return return_body

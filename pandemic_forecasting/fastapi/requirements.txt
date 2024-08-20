@@ -3,3 +3,4 @@ fastapi[all]==0.88.0
 bs4
 requests
 pandas
+statsmodels
