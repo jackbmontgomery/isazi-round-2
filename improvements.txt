@@ -1,0 +1,5 @@
+The current implementation of the system is an ARIMA (AutoRegressive Integrated Moving Average) model based on historical daily infections. While this type of model is well-suited for such circumstances, incorporating data from additional sources could enhance the model's accuracy, and in such cases, an ARIMA model might not be the best fit.
+
+The key to a good model is good data. Therefore, the first step to improving the model is to capture other potential indicators for daily infections. Some additional data sources that could be useful include testing volumes from 1 to 3 days prior and vaccination rates, which would be another valuable indicator.
+
+Mobility and contact tracing data could also prove very useful, along with historical seasonal infection rates. However, incorporating data from various sources may necessitate a different type of model. I suggest that a recurrent neural network (RNN) is a powerful tool for integrating data from multiple sources and handling data from different temporal scales.

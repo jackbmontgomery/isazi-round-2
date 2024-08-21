@@ -1,5 +1,9 @@
 # Jack Montgomery - Pandemic Forecasting
 
+## Disclaimer
+
+I was unable to find a reliable website that has up to date Covid invection statistics. So I took the worldometer data and modelled as if it was 2 years ago. This was simply to get interesting data and forecasting out the model.
+
 ## Structure
 
 - pandemic_forecasting.ipynb : This contains code that creates and evalutes the model
